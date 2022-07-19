@@ -19,61 +19,49 @@ let palindirom = (argStr) => {
     }
   }
   let isRmd = false;
+  let remove = [];
   Object.keys(count).forEach((item) => {
-    if (count[item] == 1 && dp != 1) {
-      // str += item;
-      dp--;
-      isRmd = true;
+    if (count[item] == 1) {
+      remove.push(item);
+    } else if (count[item] % 2 != 0) {
+      str += Array(count[item]).join(item);
     } else {
       str += Array(count[item] + 1).join(item);
     }
   });
-
+  str += remove[remove.length - 1];
   return str;
 };
 
-console.log('abdsfdcfqb');
-console.log(palindirom('abdsfdcfqb'));
+console.log('abcdeff', palindirom('aaabbbbc'));
 
 // bbddsffcq
 // abdsfdcfqb
 let time = new Date().getTime();
 
-function longestPalindromicSubstring(st) {
-  let permutation = [];
-
-  if (st.length === 1) return st.charAt(0);
-
-  let newString = '';
-
-  for (let i = 0; i < st.length; i++) {
-    newString = st[i];
-    if (!permutation.includes(newString)) {
-      permutation.push(newString);
-    }
-    for (let j = i + 1; j < st.length; j++) {
-      newString += st[j];
-      if (!permutation.includes(newString)) {
-        permutation.push(newString);
-      }
-    }
+function createPalindrome(st) {
+  let strCount = {};
+  for (const item of st) {
+    if (strCount[item]) {
+      strCount[item]++;
+    } else strCount[item] = 1;
   }
 
-  let currentMax = 0;
-  let currentPalindrome = '';
+  let left;
+  let right;
+  let center;
 
-  for (const elem of permutation) {
-    if (isPalindrome(elem)) {
-      if (elem.length > currentMax) {
-        currentMax = elem.length;
-        currentPalindrome = elem;
-      }
+  Object.keys(strCount).forEach((item) => {
+    let dv = 2;
+    if (item > 1) {
+      dv = item / 2;
+      
+    } else if (item == 1) {
+      center = strCount[item];
     }
-  }
+  });
 
-  console.log(permutation);
-
-  return currentPalindrome;
+  console.log(strCount, 'strCount');
 }
 
 function isPalindrome(st) {
@@ -84,7 +72,8 @@ function isPalindrome(st) {
 
   return reverse === st;
 }
+// ddefefq
 
-console.log('x', longestPalindromicSubstring('aacca'));
+console.log('ddefefq', createPalindrome('aabbc'));
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
