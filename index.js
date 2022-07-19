@@ -37,6 +37,7 @@ console.log(palindirom('abdsfdcfqb'));
 
 // bbddsffcq
 // abdsfdcfqb
+let time = new Date().getTime();
 
 function longestPalindromicSubstring(st) {
   let permutation = [];
@@ -84,4 +85,6 @@ function isPalindrome(st) {
   return reverse === st;
 }
 
-console.log('x', longestPalindromicSubstring(palindirom('aaccca')));
+console.log('x', longestPalindromicSubstring('aacca'));
+let co = new Date().getTime() - time;
+console.log(co / 1000 + ' sec');
