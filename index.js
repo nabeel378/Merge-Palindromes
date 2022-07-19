@@ -29,10 +29,59 @@ let palindirom = (argStr) => {
     }
   });
 
-  console.log(dp, 'dp');
-  console.log(str, 'xx');
+  return str;
 };
 
-palindirom('abdsfdcfqb');
+console.log('abdsfdcfqb');
+console.log(palindirom('abdsfdcfqb'));
+
 // bbddsffcq
 // abdsfdcfqb
+
+function longestPalindromicSubstring(st) {
+  let permutation = [];
+
+  if (st.length === 1) return st.charAt(0);
+
+  let newString = '';
+
+  for (let i = 0; i < st.length; i++) {
+    newString = st[i];
+    if (!permutation.includes(newString)) {
+      permutation.push(newString);
+    }
+    for (let j = i + 1; j < st.length; j++) {
+      newString += st[j];
+      if (!permutation.includes(newString)) {
+        permutation.push(newString);
+      }
+    }
+  }
+
+  let currentMax = 0;
+  let currentPalindrome = '';
+
+  for (const elem of permutation) {
+    if (isPalindrome(elem)) {
+      if (elem.length > currentMax) {
+        currentMax = elem.length;
+        currentPalindrome = elem;
+      }
+    }
+  }
+
+  console.log(permutation);
+
+  return currentPalindrome;
+}
+
+function isPalindrome(st) {
+  let reverse = '';
+  for (let i = st.length - 1; i >= 0; i--) {
+    reverse += st[i];
+  }
+
+  return reverse === st;
+}
+
+console.log('x', longestPalindromicSubstring(palindirom('aaccca')));
