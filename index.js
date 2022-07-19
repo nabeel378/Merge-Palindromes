@@ -60,9 +60,7 @@ let palindirom = (argStr) => {
 let time = new Date().getTime();
 
 function createPalindrome(st) {
-  console.log(st, 'st');
   st = palindirom(st);
-  console.log(st, 'st');
   let strCount = {};
   for (const item of st) {
     if (strCount[item]) {
@@ -110,6 +108,8 @@ function isPalindrome(st) {
 // ddefefq
 
 // console.log('result', createPalindrome('aacca'));
+console.log('result', createPalindrome('abcbadefqfed'));
+console.log('result', createPalindrome('abcbadefqfed'));
 console.log('result', createPalindrome('abcbadefqfed'));
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
