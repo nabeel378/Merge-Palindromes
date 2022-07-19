@@ -74,10 +74,8 @@ function createPalindrome(st) {
   let right = '';
   let center = '';
   let isCenter = false;
-  console.log(strCount, 'strCount');
 
   Object.keys(strCount).forEach((item, index) => {
-    console.log(item, 'ite');
     let dv = 2;
     if (strCount[item] > 1) {
       if (!isCenter && strCount[item] % 2 != 0) {
@@ -111,6 +109,7 @@ function isPalindrome(st) {
 }
 // ddefefq
 
-console.log('result', createPalindrome('aaabbbcc'));
+// console.log('result', createPalindrome('aacca'));
+console.log('result', createPalindrome('abcbadefqfed'));
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
