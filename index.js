@@ -19,18 +19,39 @@ let palindirom = (argStr) => {
     }
   }
   let isRmd = false;
+  let isOdd = false;
   let remove = [];
   Object.keys(count).forEach((item) => {
     if (count[item] == 1) {
       remove.push(item);
     } else if (count[item] % 2 != 0) {
-      str += Array(count[item]).join(item);
+      if (isOdd == false) {
+        isOdd = true;
+
+        let text = item;
+        let result = text.repeat(count[item]);
+
+        // let res = new Array(4).join(item);
+        str += result;
+      } else {
+        let text = item;
+        let result = text.repeat(count[item] - 1);
+
+        // Array(count[item]).join(item);
+        str += result;
+      }
     } else {
-      str += Array(count[item] + 1).join(item);
+      let text = item;
+      let result = text.repeat(count[item]);
+
+      // Array(count[item] + 1).join(item);
+      str += result;
     }
   });
-  str += remove[0];
-  console.log(str, 'str');
+  if (remove.length > 0) {
+    str += remove[0];
+  }
+  console.log(str, 'strxx');
   return str;
 };
 
@@ -39,7 +60,9 @@ let palindirom = (argStr) => {
 let time = new Date().getTime();
 
 function createPalindrome(st) {
+  console.log(st, 'st');
   st = palindirom(st);
+  console.log(st, 'st');
   let strCount = {};
   for (const item of st) {
     if (strCount[item]) {
@@ -50,13 +73,25 @@ function createPalindrome(st) {
   let left = '';
   let right = '';
   let center = '';
+  let isCenter = false;
+  console.log(strCount, 'strCount');
 
   Object.keys(strCount).forEach((item, index) => {
+    console.log(item, 'ite');
     let dv = 2;
     if (strCount[item] > 1) {
+      if (!isCenter && strCount[item] % 2 != 0) {
+        center = item;
+        strCount[item]--;
+      }
+
       dv = strCount[item] / 2;
-      left += Array(dv + 1).join(item);
-      right += Array(dv + 1).join(item);
+      let text = item;
+      let result = text.repeat(dv);
+
+      left += result;
+      // left += Array(dv + 1).join(item);
+      right += result;
     } else if (strCount[item] == 1) {
       center = item;
     }
@@ -76,6 +111,6 @@ function isPalindrome(st) {
 }
 // ddefefq
 
-console.log('result', createPalindrome(palindirom('abcbadefqfed')));
+console.log('result', createPalindrome('aaabbbcc'));
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
