@@ -29,7 +29,8 @@ let palindirom = (argStr) => {
       str += Array(count[item] + 1).join(item);
     }
   });
-  str += remove[remove.length - 1];
+  str += remove[0];
+  console.log(str, 'str');
   return str;
 };
 
