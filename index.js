@@ -47,21 +47,26 @@ function createPalindrome(st) {
     } else strCount[item] = 1;
   }
 
-  let left;
-  let right;
-  let center;
+  let left = '';
+  let right = '';
+  let center = '';
 
-  Object.keys(strCount).forEach((item) => {
+  Object.keys(strCount).forEach((item, index) => {
     let dv = 2;
-    if (item > 1) {
-      dv = item / 2;
-      
-    } else if (item == 1) {
-      center = strCount[item];
+    console.log(strCount[item], item, 'item');
+    if (strCount[item] > 1) {
+      dv = strCount[item] / 2;
+      left += Array(dv + 1).join(item);
+      right += Array(dv + 1).join(item);
+    } else if (strCount[item] == 1) {
+      center = item;
     }
   });
 
-  console.log(strCount, 'strCount');
+  console.log(left, 'strCount');
+  console.log(Array.from(right).reverse().join(''), 'strCount');
+  console.log(center, 'strCount');
+  console.log(left + center + Array.from(right).reverse().join('') + '  ANS');
 }
 
 function isPalindrome(st) {
@@ -74,6 +79,6 @@ function isPalindrome(st) {
 }
 // ddefefq
 
-console.log('ddefefq', createPalindrome('aabbc'));
+console.log('abdefcfedba', createPalindrome(palindirom('aabbc')));
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
