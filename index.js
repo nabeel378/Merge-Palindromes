@@ -107,9 +107,11 @@ function isPalindrome(st) {
 }
 // ddefefq
 
-// console.log('result', createPalindrome('aacca'));
-console.log('result', createPalindrome('abcbadefqfed'));
-console.log('result', createPalindrome('abcbadefqfed'));
-console.log('result', createPalindrome('abcbadefqfed'));
+let r1 = createPalindrome('aaaabbbccc');
+let r2 = createPalindrome('ddeecccaaaabbbccc');
+let r3 = createPalindrome(r1 + r2);
+console.log('r1', r1);
+console.log('r2', r2);
+console.log('aabcccdeedcccbaa', r3);
 let co = new Date().getTime() - time;
 console.log(co / 1000 + ' sec');
